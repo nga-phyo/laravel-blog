@@ -9,17 +9,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts">Home</a>
+                    <a class="nav-link" href="{{ route('posts.home') }}">Home</a>
                 </li>
            
                <li class="nav-item">
-                <a class="nav-link" href="/categories/create">Create A Post</a>
+                <a class="nav-link" href="{{ route('categories.create') }}">Create A Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('categories.home') }}">Create Home</a>
             </li>
 
             
                
 
-               
+{{--                
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,7 +39,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Login</a>
-                </li>
+                </li> --}}
 
                 
                 

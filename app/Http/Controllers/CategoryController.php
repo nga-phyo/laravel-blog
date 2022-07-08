@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Prophecy\Call\Call;
 
 class CategoryController extends Controller
 {
@@ -14,7 +15,37 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
+
+        //---First---
+        // $category = Category::all();
+        // $category = Category::paginate(3);
+
+        // if($request =request('search')){
+        //     $category = Category::where('name', 'like', "%$request%")->latest('id')->paginate(4)->withQueryString();
+        // }else {
+        //     $category = Category::latest('id')->paginate(5);
+        // }
+
+            // ---Second---
+        // $category = Category::query();
+        // if($request =request('search')) {
+
+        //     $category->where('name', 'like' ,"%$request%");
+        // }
+
+        // $category = $category->latest('id')->paginate(4)->withQueryString();
+
+
+        // ---Third---
+
+
+       $category = Category::when(request('search'), function($query){
+           $query->where('name' ,'like', '%' . request('search') . '%');
+        })
+        ->latest('id')
+        ->paginate('5')
+        ->withQueryString();
+
 
         return view('category.index',compact('category'));
     }

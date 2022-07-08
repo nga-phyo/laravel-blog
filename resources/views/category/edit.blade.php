@@ -25,7 +25,9 @@
 
 <div class="mb-3">
 <label for="" class="form-lable">name</label>
-<input class="form-control" type="text" name="name">
+<input class="form-control" type="text" name="name" value="{{ old('name' , $category->name) }}">
+
+
 
 
 </div>

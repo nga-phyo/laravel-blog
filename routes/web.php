@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('posts',[PostController::class, 'index'])->name('posts-home');
+Route::get('posts',[PostController::class, 'index'])->name('posts.home');
 Route::post('posts/store',[PostController::class, 'store']);
-Route::get('posts/create',[PostController::class, 'create'])->middleware('myauth')->name('posts-create');
+Route::get('posts/create',[PostController::class, 'create'])->middleware('myauth')->name('posts.create');
 Route::get('posts/show/{id}',[PostController::class, 'show']);
 Route::get('posts/edit/{id}',[PostController::class, 'edit']);
 Route::post('posts/update/{id}',[PostController::class, 'update']);
@@ -39,11 +39,11 @@ Route::view('go','welcome');
 
 
 
-Route::get('categories',[CategoryController::class, 'index']);
+Route::get('categories',[CategoryController::class, 'index'])->name('categories.home');
 Route::post('categories/store',[CategoryController::class, 'store']);
-Route::get('categories/create',[CategoryController::class, 'create']);
+Route::get('categories/create',[CategoryController::class, 'create'])->name('categories.create');
 Route::post('categories/update/{id}',[CategoryController::class, 'update']);
-Route::get('categories/edit/{id}',[CategoryController::class, 'edit']);
+Route::get('categories/edit/{id}',[CategoryController::class, 'edit'])->name('categories.edit');
 Route::delete('categories/destroy/{id}',[CategoryController::class, 'destroy']);
 
 

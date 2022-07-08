@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('posts-home') }}">Blog</a>
+        <a class="navbar-brand" href="{{ route('posts.home') }}">Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -9,23 +9,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts-home')}}">Home</a>
+                    <a class="nav-link @if (request()->path() == 'posts') active @endif " href="{{ route('posts.home')}}">Home</a>
                 </li>
            
 
                
                <li class="nav-item">
-                <a class="nav-link" href="{{route('posts-create')}}">Create A Post</a>
+                <a class="nav-link @if ( request()->path() == 'posts/create') active @endif" href="{{route('posts.create')}}">Create A Post</a>
             </li>
                
                <li class="nav-item">
-                <a class="nav-link" href="/my-posts">My POst</a>
+                <a class="nav-link @if (request()->path() == 'my-posts') active @endif " href="/my-posts">My POst</a>
             </li>
 
      
 
             <li class="nav-item">
-                <a class="nav-link" href="/categories">Category</a>
+                <a class="nav-link @if (request()->path() == 'categories') active @endif " href="{{ route('categories.home') }}">Category</a>
             </li>
                
 

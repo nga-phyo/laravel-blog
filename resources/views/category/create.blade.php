@@ -34,11 +34,13 @@
 
     <button type="submit" class="btn btn-outline-primary">create</button> 
    
-   <a href="/categories" class="btn btn-outline-warning">cancle</a>
+   <a href="{{ route('categories.home') }}" class="btn btn-outline-warning">cancle</a>
    </div>
 
 
 </form>
+
+
 
 
 </div>
