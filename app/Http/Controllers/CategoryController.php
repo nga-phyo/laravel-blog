@@ -57,7 +57,11 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+
+        $category = new Category();
+
+     
+        return view('category.create',compact('category'));
     }
 
     /**

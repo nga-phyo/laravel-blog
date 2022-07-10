@@ -57,8 +57,28 @@
     <div>
          <a href="/posts/show/{{ $post->id }}"> <h2> {{ $post->title }}</h2></a>
 
+         <img src="{{ $post->image }}" width="300px" height="220px"><br> <br>
+
           <i>{{ $post->created_at->diffForHumans() }} </i>/ <b>{{$post->user->name}}</b>
-          {{-- <b>{{ $post->author}}</b> --}}
+          
+
+          @php
+          $category_ids = DB::table('category_post')
+          ->where('post_id', $post->id)
+          ->get()
+          ->pluck('category_id')
+          ->toArray();
+          $categories = \App\Models\Category::whereIn('id', $category_ids)->get();
+          @endphp
+          @foreach ($categories as $category) 
+          {{-- @foreach ($post->category()->get() as $category) --}}
+          {{-- @foreach ($post->category as $category) --}}
+ 
+          <span class="badge text-bg-info">{{$category->name}}</span>
+         
+        
+
+          @endforeach
 
      
 

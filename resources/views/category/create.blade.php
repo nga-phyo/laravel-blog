@@ -20,12 +20,21 @@
       <div class="card-body">
 
 
-<form action="/categories/store" method="POST">
+<form action="{{ route('categories.store') }}" method="POST">
     @csrf
 
 <div class="mb-3">
 <label for="" class="form-lable">name</label>
-<input class="form-control" type="text" name="name">
+<input class="form-control @error ('name') is-invalid @enderror" type="text" name="name" value="{{ old('name', $category->name) }}">
+
+
+
+@error('name')
+
+<div class="invalid-feedback">{{ $message }}</div>
+
+@enderror
+
 
 
 </div>

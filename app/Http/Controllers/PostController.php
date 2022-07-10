@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -42,8 +44,8 @@ class PostController extends Controller
     {
         
         
-
-        return view('posts.create');
+        $category = Category::all();
+        return view('posts.create',compact('category'));
 
     }
 
@@ -53,14 +55,28 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        Post::create([
+
+
+
+
+        $post = Post::create([
             'title'=>$request->title,
             'body'=>$request->body,
             'user_id'=> auth()->id(),
+            'image' => '/upload/images/makeup.jpg',
 
         ]);
+
+         $post->categories()->attach($request->category_ids);
+
+        // foreach($request->category_ids as $categoryId) {
+        //     DB::table('category_post')->insert([
+        //         'post_id' => $post->id,
+        //         'category_id' => $categoryId,
+        //     ]);
+        // }
 
         session()->flash('success','A Post was Created');
         return redirect('posts');
@@ -96,7 +112,11 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        return view('posts.edit',compact('post'))->with('success','A Post was Updating now');
+
+        $oldCategoryIds = $post->categories->pluck('id')->toArray();
+        $category = Category::all();
+
+        return view('posts.edit',compact('post','category','oldCategoryIds'))->with('success','A Post was Updating now');
     }
 
     /**
@@ -106,17 +126,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
 
         
         $post = Post::find($id);
 
-       $post->update([
-        'title'=>$request->title,
-        'body'=>$request->body,
-       ]);
-       return redirect('posts');
+        $post->update($request->only(['title', 'body']));
+
+        
+        $post->categories()->sync($request->category_ids);
+
+    //    $post->update([
+    //     'title'=>$request->title,
+    //     'body'=>$request->body,
+    //    ]);
+       return redirect('posts')->with('A post was Updated successfully');
     }
 
     /**

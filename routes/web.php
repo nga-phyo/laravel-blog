@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('posts',[PostController::class, 'index'])->name('posts.home');
-Route::post('posts/store',[PostController::class, 'store']);
+Route::post('posts/store',[PostController::class, 'store'])->name('posts.store');
 Route::get('posts/create',[PostController::class, 'create'])->middleware('myauth')->name('posts.create');
 Route::get('posts/show/{id}',[PostController::class, 'show']);
 Route::get('posts/edit/{id}',[PostController::class, 'edit']);
@@ -40,11 +40,11 @@ Route::view('go','welcome');
 
 
 Route::get('categories',[CategoryController::class, 'index'])->name('categories.home');
-Route::post('categories/store',[CategoryController::class, 'store']);
+Route::post('categories/store',[CategoryController::class, 'store'])->name('categories.store');
 Route::get('categories/create',[CategoryController::class, 'create'])->name('categories.create');
-Route::post('categories/update/{id}',[CategoryController::class, 'update']);
+Route::post('categories/update/{id}',[CategoryController::class, 'update'])->name('categories.update');
 Route::get('categories/edit/{id}',[CategoryController::class, 'edit'])->name('categories.edit');
-Route::delete('categories/destroy/{id}',[CategoryController::class, 'destroy']);
+Route::delete('categories/destroy/{id}',[CategoryController::class, 'destroy'])->name('categories.destroy');
 
 
 Route::get('register',[RegisterController::class, 'create']);

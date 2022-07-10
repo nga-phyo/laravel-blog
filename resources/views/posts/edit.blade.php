@@ -27,8 +27,23 @@
 <div class="mb-3">
 <label for="" class="form-lable">Title</label>
 <input class="form-control" type="text" name="title">
+</div>
 
-
+<div class="mb-3">
+  <label class="form-label">Post Cateory</label>
+  <select name="category_ids[]" class="form-select @error('category_ids') is-invalid @enderror" multiple>
+      <option value="">-- select --</option>
+      @foreach ($category as $category)
+      <option value="{{ $category->id }}" 
+          @if (in_array($category->id, old('category_ids', $oldCategoryIds)))
+              selected
+          @endif
+          >{{ $category->name }}</option>
+      @endforeach
+  </select>
+  @error('category_ids')
+  <div class="invalid-feedback">{{ $message }}</div>
+  @enderror
 </div>
 
  

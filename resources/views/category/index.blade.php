@@ -46,15 +46,15 @@
 
       <div>
 
-        <a href="/categories/show/{{ $category->id }}"> <h2> {{ $category->name }}</h2></a>
+        <a href="#"> <h2> {{ $category->name }}</h2></a>
 
          <i>{{ $category->created_at->diffForHumans() }} </i>/<b>admin</b>
 
 
          <div class="d-flex justify-content-end">
-           <a href="/categories/edit/{{ $category->id }}" class="btn btn-outline-success">Edit</a>
+           <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-success">Edit</a>
 
-           <form action="/categories/destroy/{{ $category->id }}" method="POST">
+           <form action="{{ route('categories.destroy', $category->id ) }}" method="POST">
    
                @csrf
                @method('DELETE')
