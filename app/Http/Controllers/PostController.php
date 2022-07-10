@@ -59,13 +59,23 @@ class PostController extends Controller
     {
 
 
+        $file =$request->file('image');
+
+        $fileName =  time() . '_' .$file->getClientOriginalName();
+
+        $dir = public_path('upload/images');
+
+        $file->move($dir, $fileName);
+
+        $imagepath = '/upload/images/' . $fileName;
+
 
 
         $post = Post::create([
             'title'=>$request->title,
             'body'=>$request->body,
             'user_id'=> auth()->id(),
-            'image' => '/upload/images/makeup.jpg',
+            'image' => $imagepath,
 
         ]);
 
