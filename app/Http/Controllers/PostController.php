@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\PostImage;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -19,7 +20,7 @@ class PostController extends Controller
     //   $post = Post::all();
         // $post = post::paginate(3);
 
-        $post = Post::where('title', 'like' ,'%' . $request->search . '%')->orderBy('id','desc')->paginate(4);
+        $post = Post::where('title', 'like' ,'%' . $request->search . '%')->orderBy('id','asc')->paginate(4);
 
 
         // $post = Post::select('posts.*','users.name as author')
@@ -59,25 +60,51 @@ class PostController extends Controller
     {
 
 
-        $file =$request->file('image');
-
-        $fileName =  time() . '_' .$file->getClientOriginalName();
-
-        $dir = public_path('upload/images');
-
-        $file->move($dir, $fileName);
-
-        $imagepath = '/upload/images/' . $fileName;
+        
+        // $path = $file->storeAs($dir, $fileName);
 
 
+
+        // PostImage::create([
+        //     'post_id' => $post->id,
+        //     'path' => $path,
+        // ]);
 
         $post = Post::create([
             'title'=>$request->title,
             'body'=>$request->body,
             'user_id'=> auth()->id(),
-            'image' => $imagepath,
+            // 'image' => '/upload/images/' . $fileName,
 
         ]);
+
+        foreach($request->file('images') as $file){
+            // $file =$request->file('image');
+
+            $fileName =  time() . '_' .$file->getClientOriginalName();
+    
+            $dir = public_path('upload/images');
+    
+            $file->move($dir, $fileName);
+
+            PostImage::create([
+                'post_id' => $post->id,
+                'path' => '/upload/images/' . $fileName,
+            ]);
+        }
+
+
+        
+
+       
+
+       
+       
+    //    $imagepath = '/upload/images/' . $fileName;
+
+
+
+        
 
          $post->categories()->attach($request->category_ids);
 

@@ -1,12 +1,57 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPostController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Route;
 
+
+Route::get('/{lang}',function($lang)
+{
+  app()->setLocale($lang);
+  return view('welcome');
+});
+
+Route::get('mail/sent',function(){
+
+  Mail::raw('Mail Body Testing First Time',function($m){
+    
+    $m->to('thetminnhtun92@gmail.com')
+    ->subject('Hello World');
+  });
+
+  return 'mail send success';
+});
+
+
+
+
+Route::get('collection', function(){
+
+  $name = collect([0,2,4,6]);
+
+  dd($name->sortDesc()->toArray());
+});
+
+// Route::get('file/create', function(){
+
+//   return Storage::disk('public')->put('my_dir/a.txt','apple');
+// });
+
+
+// Route::get('file/read', function(){
+//     return Storage::disk('public')->get('my_dir/a.txt');
+// });
+
+
+// Route::get('file/delete', function(){
+//     return Storage::disk('public')->delete('my_dir/a.txt');
+// });
 /*
 |--------------------------------------------------------------------------
 | Web Routes

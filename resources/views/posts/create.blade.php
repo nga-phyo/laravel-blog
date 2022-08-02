@@ -23,14 +23,13 @@
     @csrf
 
 
-
     <div class="mb-3">
         <label class="form-label">Post Image</label>
-        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image">
-        @error('image')
+        <input class="form-control @error('images') is-invalid @enderror" type="file" name="images[]" multiple>
+        @error('images')
         <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-    </div>
+    </div> 
 
         <div class="mb-3">
         <label for="" class="form-lable">Title</label>

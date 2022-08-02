@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'title' => $this->faker->text(10),
             'body' => $this->faker->text(100),
             'user_id' => User::inRandomOrder()->first()->id,
-            'image' => '/upload/images/makeup.jpg'
+            // 'image' => '/upload/images/makeup.jpg'
             
 
         ];

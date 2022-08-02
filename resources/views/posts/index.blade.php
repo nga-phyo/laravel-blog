@@ -56,8 +56,11 @@
     @foreach($post as $post)
     <div>
          <a href="/posts/show/{{ $post->id }}"> <h2> {{ $post->title }}</h2></a>
+         @if($post->images()->exists()) 
 
-         <img src="{{ $post->image }}" width="300px" height="220px"><br> <br>
+         <img src="{{ $post->images[0]->path }}" width="300px" height="220px">
+         @endif 
+         {{-- <img src="{{ isset($post->images[0]) ? $post->images[0]->path : '' }}" width="300px" height="220px"><br> <br> --}}
 
           <i>{{ $post->created_at->diffForHumans() }} </i>/ <b>{{$post->user->name}}</b>
           
