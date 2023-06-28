@@ -37,10 +37,12 @@
                     
                     <h3><a href="/post/show/{{ $post->id }}">{{ $post->title }}</a></h3> 
                      <h5> {{ $post->body }}</h5>
-                    <i>{{ $post->created_at->diffForHumans() }} </i>by Mark
+                      <i>{{ $post->created_at->diffForHumans() }} </i> by <b>{{ $post->name }}</b>
                      
                     
-                    <div class="d-flex justify-content-end">
+                      {{-- @if(Auth::check() && $post->user_id == Auth::user()->id) --}}
+                      @if($post->isOwnPost())
+                      <div class="d-flex justify-content-end">
                             <form action="/post/delete/{{ $post->id }}" method="POST">
 
                                    @method('DELETE')
@@ -53,6 +55,7 @@
                             </form>
 
                     </div>
+                      @endif
                      <hr>
 
 

@@ -93,7 +93,13 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - php artisan make:model Post -m (same)
 
--php artisan route:list
+- php artisan route:list
+
+- php artisan make:seeder PostSeeder
+
+- php artisan db:seed --class=PostSeeder
+
+- php artisan migrate:fresh --seed;
  
 
 ## Auth
@@ -127,6 +133,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Post::query()->delete() = all Post
 
 - Post::turncate() -> id start No 1
+
 ## Learning
 
 - Route
@@ -141,11 +148,32 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - Tinker
 
+- Factory
+
+- Seeder
+
+- Migration
+
 - Relation Route , Controller , View
 
 - CRUD
 
 - Method(POST,GET)
+
+- One To Many (relation)
+
+- Foregin key (cascade)
+
+- Paginate 
+
+- Middleware
+
+- Auth
+
+- One to One || One to Many
+
+- inrandomorder is not working this project(try again)
+
 
 get => get data
 

@@ -31,12 +31,14 @@ class CategoryController extends Controller
 
         $cat->save();
 
-        return redirect('cat');
+        return redirect('cat')->with('yes', 'Category create success');
     }
 
     public function destroy($id){
 
         Category::destroy($id);
+
+        session()->flash('yes','This Category was deleted successfully');
 
         return redirect('cat');
     }
@@ -55,6 +57,8 @@ class CategoryController extends Controller
        $cat->cat_name = $request->cat_name;
 
        $cat->save();
+
+       session()->flash('yes', 'Category Update Successfully');
 
        return redirect('cat');
     }

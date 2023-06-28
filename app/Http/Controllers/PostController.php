@@ -14,7 +14,12 @@ class PostController extends Controller
     public function index(){
 
     //    $posts = Post::all();
-       $posts = Post::paginate(3);
+    //    $posts = Post::latest()->paginate(5);
+
+        $posts = Post::select('posts.*','users.name')
+        ->join('users', 'posts.user_id', '=', 'users.id')
+        ->paginate(5);
+       
 
        return view('posts.home',compact('posts'));
       
@@ -27,19 +32,19 @@ class PostController extends Controller
        
     }
 
-    public function store(Request $request){
+    public function store(PostRequest $request){
 
 
-        $validator = Validator::make($request->all(),[
+        // $validator = Validator::make($request->all(),[
 
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        //     'title' => 'required',
+        //     'body' => 'required',
+        // ]);
 
-        if($validator->fails()){
+        // if($validator->fails()){
 
-            return redirect('/post/create')->withErrors($validator)->withInput();
-        }
+        //     return redirect('/post/create')->withErrors($validator)->withInput();
+        // }
 
 
         //validate
@@ -70,6 +75,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->title,
             'body' => $request->body,
+            'user_id' => Auth::user()->id,
         ]);
  
         return redirect('posts')->with('success','A Post Created Successfully!');
@@ -80,7 +86,13 @@ class PostController extends Controller
 
     public function show($id){
 
-        $post = Post::find($id);
+        // $post = Post::find($id);
+
+        $post = Post::select('posts.*', 'users.name')
+        ->join('users', 'users.id', '=', 'posts.user_id')
+        ->where('posts.id' ,'=', $id)
+        ->first();
+
 
         return view('posts.show',compact('post'));
         

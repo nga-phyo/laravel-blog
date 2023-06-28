@@ -30,6 +30,9 @@
               <li class="nav-item">
                 <a class="nav-link active" href="/post/create">Create Post</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/cat/create">Create Category</a>
+              </li>
               @endAuth
               @if(Auth::check())
               <li class="nav-item dropdown">

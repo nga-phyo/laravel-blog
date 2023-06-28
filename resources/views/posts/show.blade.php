@@ -15,8 +15,10 @@
                         </div>
                         <div class="card-body">
  
-                            <h3>{{ $post->title }}</h3>
-                            <p> {{ $post->body }}</p>
+                            <h2>{{ $post->title }}</h2>
+                            <h5> {{ $post->body }}</h5>
+                            <i>{{ $post->created_at->diffForHumans() }}</i> post by<b>  {{ $post->name }}</b><br><br>
+
               
                             <a href="/posts" class="btn btn-secondary">Back</a>
                         </div>
