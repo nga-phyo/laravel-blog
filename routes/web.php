@@ -5,6 +5,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MyPostController;
 use App\Http\Controllers\RegisterController;
 
 
@@ -52,3 +53,7 @@ use App\Http\Controllers\RegisterController;
     Route::post('cat/delete/{id}',[CategoryController::class , 'destroy']);
     Route::get('cat/edit/{id}',[CategoryController::class , 'edit']);
     Route::post('cat/update/{id}',[CategoryController::class , 'update']);
+
+
+
+    Route::get('my-post', [MyPostController::class, 'index']);

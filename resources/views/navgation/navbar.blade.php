@@ -40,8 +40,10 @@
                   {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/my-post">My-Post</a></li>
                   <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
+               
               </li>
               @else
                 <li class="nav-item">

@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
     //    $posts = Post::all();
     //    $posts = Post::latest()->paginate(5);
 
-        $posts = Post::select('posts.*','users.name')
-        ->join('users', 'posts.user_id', '=', 'users.id')
-        ->paginate(5);
+          $posts = Post::where('title', 'like' ,'%' . $request->search . '%')->paginate(5);
+
+        // $posts = Post::select('posts.*','users.name')
+        // ->join('users', 'posts.user_id', '=', 'users.id')
+        // ->paginate(5);
        
 
        return view('posts.home',compact('posts'));
@@ -114,6 +116,7 @@ class PostController extends Controller
         $post->update([
             'title' => $request->title,
             'body' => $request->body,
+            
         ]);
 
         return redirect('posts')->with('success','A Post Update Successfully!');
