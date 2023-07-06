@@ -24,14 +24,19 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" href="/posts">Home</a>
+                <a class="nav-link @if(request()->path() == 'posts') active @endif " href="/posts">Home</a>
               </li>
+              {{-- {{ url()->current()}} --}}
+              {{-- {{ request()->path() }} --}}
+          {{-- {{url()->full()}} --}}
+          {{-- {{url()->previous()}} --}}
+
               @Auth
               <li class="nav-item">
-                <a class="nav-link active" href="/post/create">Create Post</a>
+                <a class="nav-link @if(request()->path() == 'post/create') active @endif" href="/post/create">Create Post</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="/cat/create">Create Category</a>
+                <a class="nav-link @if(request()->path() == 'cat') active @endif " href="/cat">Category</a>
               </li>
               @endAuth
               @if(Auth::check())

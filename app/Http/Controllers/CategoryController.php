@@ -5,15 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-use function Ramsey\Uuid\v1;
+
 
 class CategoryController extends Controller
 {
     
 
-    public function index(){
+    public function index(Request $request){
 
-       $cats = Category::all();
+    //    $cats = Category::all();
+
+        // Category::where('cat_name' ,'like', '%'. $request->search.'%')->paginate();
+
+        // $cats = Category::where('cat_name' ,'like', '%'. request('search').'%')->paginate();
+
+        // Category::when('bool',function())
+
+        $cats = Category::when(request('search'), function($query){
+
+                $query->where('cat_name', 'like', '%'.request('search').'%');
+                })->paginate();
 
        return view('cat.cathome',compact('cats'));
     }

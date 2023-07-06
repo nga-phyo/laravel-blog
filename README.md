@@ -174,6 +174,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - Search items
 
+- Deisgn
+
 - inrandomorder is not working this project(try again)
 
 
