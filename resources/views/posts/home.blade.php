@@ -10,7 +10,22 @@
   
 <div class="container">
 
-      
+    {{-- start alert message --}}
+
+              <div class="row">
+                     <div class="col mt-5">
+                            <div class="col-10">
+                                   @if(session()->has('success'))
+                                   <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                          {{ session()->get('success') }}
+                                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                   </div>
+                                   @endif
+
+                            </div>
+                     </div>
+              </div>
+    {{-- end alert message --}}
 
        <div class="row mt-4">
            {{-- start photo upload --}}
@@ -24,7 +39,7 @@
                             
                             <img src="https://guidetoiceland.imgix.net/910729/x/0/midnight-sun-in-iceland-how-covid-19-may-influence-your-chance-to-experience-it-12-jpg?ixlib=php-3.3.0" class="card-img-top" alt="...">
                             <div class="card-body">
-                            <h5 class="card-title"><a href="/post/show/{{ $post->id }}">{{ $post->title }}</a></h5>
+                            <h5 class="card-title"><a href="{{ route('post.show',['id' => $post->id]) }}">{{ $post->title }}</a></h5>
                             <p class="card-text">{{ $post->body }}</p>
                             <i>{{ $post->created_at->toFormattedDateString() }} <b>({{$post->created_at->diffForHumans()}})</b> </i> by <b>{{ $post->user->name }}</b>
                             
@@ -34,14 +49,14 @@
                             @if($post->isOwnPost())
                             
                             <div class="d-flex mt-3">
-                                  <form action="/post/delete/{{ $post->id }}" method="POST">
+                                  <form action="{{ route('post.delete',['id' => $post->id]) }}" method="POST">
       
                                          @method('DELETE')
                                   
                                   @csrf
       
                                   <button type="submit" class="btn btn-outline-danger" onclick=" return confirm('Are you sure!')">Delete</button>
-                                  <a href="/post/edit/{{ $post->id }}" class="btn btn-outline-info">Edit</a>
+                                  <a href="{{ route('post.edit', $post->id)}}" class="btn btn-outline-info">Edit</a>
                                   
                                   </form>
                                   

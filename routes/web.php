@@ -21,13 +21,13 @@ use App\Http\Controllers\RegisterController;
 
     // Post Rote
 
-    Route::get('posts', [PostController::class, 'index'])->middleware('myauth');
-    Route::get('post/create', [PostController::class, 'create']);
-    Route::post('post/store', [PostController::class, 'store']);
-    Route::get('post/show/{id}', [PostController::class, 'show']);
-    Route::get('post/edit/{id}', [PostController::class, 'edit']);
-    Route::post('post/update/{id}', [PostController::class, 'update']);
-    Route::delete('post/delete/{id}',[PostController::class, 'destroy']);
+    Route::get('posts', [PostController::class, 'index'])->name('post.index')->middleware('myauth');
+    Route::get('post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('post/store', [PostController::class, 'store'])->name('post.store');
+    Route::get('post/show/{id}', [PostController::class, 'show'])->name('post.show');
+    Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
+    Route::post('post/update/{id}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('post/delete/{id}',[PostController::class, 'destroy'])->name('post.delete');
 
 
     // Register Login Logout
@@ -47,12 +47,12 @@ use App\Http\Controllers\RegisterController;
     //     Post::factory(3)->create();
     // });
 
-    Route::get('cat',[CategoryController::class , 'index']);
-    Route::get('cat/create',[CategoryController::class , 'create']);
-    Route::post('cat/store',[CategoryController::class , 'store']);
-    Route::post('cat/delete/{id}',[CategoryController::class , 'destroy']);
-    Route::get('cat/edit/{id}',[CategoryController::class , 'edit']);
-    Route::post('cat/update/{id}',[CategoryController::class , 'update']);
+    Route::get('cat',[CategoryController::class , 'index'])->name('cat.index');
+    Route::get('cat/create',[CategoryController::class , 'create'])->name('cat.create');
+    Route::post('cat/store',[CategoryController::class , 'store'])->name('cat.store');
+    Route::post('cat/delete/{id}',[CategoryController::class , 'destroy'])->name('cat.delete');
+    Route::get('cat/edit/{id}',[CategoryController::class , 'edit'])->name('cat.edit');
+    Route::post('cat/update/{id}',[CategoryController::class , 'update'])->name('cat.update');
 
 
 

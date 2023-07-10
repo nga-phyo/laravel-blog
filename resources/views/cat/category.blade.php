@@ -12,7 +12,7 @@
             <div class="col-6">
                 
                
-                  <form action="/cat/store" method="POST">
+                  <form action="{{ route('cat.store') }}" method="POST">
                      @csrf
                      <div class="card">
                         <div class="card-header">

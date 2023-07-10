@@ -12,7 +12,8 @@
         <div class="col-6">
             
            
-              <form action="/cat/update/{{ $cat->id }}" method="POST">
+              {{-- <form action="/cat/update/{{ $cat->id }}" method="POST"> --}}
+              <form action="{{ route('cat.update', $cat->id )}}" method="POST">
                  @csrf
                  <div class="card">
                     <div class="card-header">

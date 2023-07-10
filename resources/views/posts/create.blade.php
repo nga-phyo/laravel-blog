@@ -26,7 +26,7 @@
                         <h3>Create A Post</h3>
                     </div>
                     <div class="card-body">
-                        <form action="/post/store" method="POST">
+                        <form action="{{ route('post.store') }}" method="POST">
 
                             {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
                             @csrf

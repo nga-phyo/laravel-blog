@@ -20,7 +20,8 @@
                                 Edit Page
                             </div>
                             <div class="card-body">
-                                <form action="/post/update/{{ $post->id }}" method="POST">
+                                {{-- <form action="/post/update/{{ $post->id }}" method="POST"> --}}
+                                <form action="{{ route('post.update', $post->id)}}" method="POST">
 
                                 
                                     @csrf

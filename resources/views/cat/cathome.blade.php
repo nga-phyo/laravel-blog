@@ -59,9 +59,9 @@
                                     <td> {{ $cat->created_at }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="cat/edit/{{ $cat->id }}" class="btn btn-success me-2"> <i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                            <a href="{{ route('cat.edit',$cat->id) }}" class="btn btn-success me-2"> <i class="fa-solid fa-pen-to-square"></i> Edit</a>
 
-                                            <form action="cat/delete/{{ $cat->id }}" method="POST">
+                                            <form action="{{ route('cat.delete',['id' => $cat->id]) }}" method="POST">
                                             @csrf
                                             <button class="btn btn-danger" onclick="return confirm('Are you Sure!')"> <i class="fa-solid fa-trash"></i> Delete</button>
                                             </form>
